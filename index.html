@@ -671,5 +671,207 @@ button,
   }
 }
  </style>
-   <style>
-<meta name="theme-color" content="#100b20">
+<style>
+
+/* INSTA X YOU - WHITE LIQUID GLASS */
+
+:root {
+  --bg: #ffffff;
+  --panel: rgba(255,255,255,.72);
+  --line: rgba(20,20,20,.10);
+  --purple: #8b5cf6;
+  --pink: #e879f9;
+  --text: #111111;
+  --muted: #777777;
+}
+
+body {
+  background: #fff !important;
+  color: #111 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+.app {
+  background: #fff;
+}
+
+.logo {
+  background: none;
+  color: #111;
+  -webkit-text-fill-color: #111;
+  font-weight: 850;
+}
+
+.muted,
+.story,
+.post-user small {
+  color: #777 !important;
+}
+
+.glass {
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 25px;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  box-shadow: 0 8px 30px rgba(0,0,0,.055),
+              inset 0 1px 1px rgba(255,255,255,.9);
+}
+
+.glass::before {
+  background: linear-gradient(
+    180deg,rgba(255,255,255,.7),transparent
+  );
+}
+
+.welcome {
+  background: #fafafa !important;
+}
+
+.search,
+.composer input,
+.comment-form input,
+.field {
+  color: #111 !important;
+  background: rgba(245,245,245,.85) !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #999 !important;
+}
+
+.story-ring span {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+.avatar {
+  color: white;
+}
+
+.post {
+  background: #fff !important;
+}
+
+.post-text,
+.post-user strong,
+.section-title,
+.welcome h1,
+.profile h2 {
+  color: #111;
+}
+
+.action {
+  color: #333;
+}
+
+.action.liked {
+  color: #ed4264;
+}
+
+.comment {
+  color: #444;
+}
+
+.comment strong {
+  color: #111;
+}
+
+.form-card,
+.profile {
+  background: #fff !important;
+}
+
+/* FLOATING WHITE LIQUID GLASS NAV */
+
+.nav {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  max-width: 620px;
+  margin: auto;
+  height: 76px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background: rgba(255,255,255,.66) !important;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 40px;
+
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
+
+  box-shadow:
+    0 8px 35px rgba(0,0,0,.13),
+    inset 0 1px 2px #fff,
+    0 0 15px rgba(255,255,255,.8);
+}
+
+.nav button {
+  flex: 1;
+  height: 55px;
+  min-width: 0;
+  padding: 5px 2px;
+  border: 0;
+  border-radius: 30px;
+  color: #333 !important;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  transition: all .3s ease;
+}
+
+.nav button.active {
+  background: rgba(255,255,255,.95);
+  color: #000 !important;
+  box-shadow:
+    0 3px 15px rgba(0,0,0,.10),
+    inset 0 1px 2px #fff;
+}
+
+.nav .symbol {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.page.active {
+  animation: liquidAppear .28s ease;
+}
+
+@keyframes liquidAppear {
+  from {opacity:0;transform:translateY(7px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.primary {
+  background: #111;
+  color: #fff;
+  border: 0;
+  box-shadow: none;
+}
+
+.post-image {
+  border-radius: 18px;
+}
+
+body, .app {
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
