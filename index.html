@@ -11,13 +11,9 @@
 
 <style>
 :root {
-  --bg:#fff;
-  --text:#111;
+  --black:#111;
   --muted:#888;
-  --glass:rgba(255,255,255,.68);
-  --border:rgba(255,255,255,.9);
-  --shadow:0 8px 30px rgba(0,0,0,.12);
-  --accent:#8b5cf6;
+  --purple:#9665ef;
 }
 
 * {
@@ -27,95 +23,92 @@
 
 html,body {
   margin:0;
-  width:100%;
   min-height:100%;
+  width:100%;
   background:#fff;
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
-  "Helvetica Neue",Arial,sans-serif;
+  color:var(--black);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;
+}
+
+body {
+  overflow-x:hidden;
   overscroll-behavior-x:none;
 }
 
-body { overflow-x:hidden; }
-
-button,input,textarea { font:inherit; }
-button { cursor:pointer; }
+button,input,textarea {font:inherit}
+button {cursor:pointer}
 
 .app {
   width:100%;
   max-width:650px;
-  margin:auto;
   min-height:100dvh;
-  padding:env(safe-area-inset-top) 15px 125px;
+  margin:auto;
+  padding:env(safe-area-inset-top) 13px 115px;
+  touch-action:pan-y;
 }
 
-/* HEADER */
-
 header {
-  height:65px;
+  height:60px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .logo {
-  font-size:26px;
+  font-size:24px;
   font-weight:850;
-  letter-spacing:-1.2px;
+  letter-spacing:-1px;
 }
 
 .header-actions {
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:14px;
 }
 
 .icon-btn {
   border:0;
   background:none;
+  font-size:26px;
   color:#111;
-  font-size:25px;
-  padding:5px;
 }
 
 .avatar {
-  height:38px;
   width:38px;
-  border-radius:50%;
+  height:38px;
+  flex-shrink:0;
   display:grid;
   place-items:center;
-  color:#fff;
-  background:linear-gradient(140deg,#9b5cf6,#ed69a7);
+  border-radius:50%;
+  color:white;
   font-weight:800;
-  flex-shrink:0;
+  background:linear-gradient(135deg,#a78bfa,#ec4899);
 }
-
-/* STORIES */
 
 .stories {
   display:flex;
-  gap:15px;
+  gap:14px;
   overflow-x:auto;
-  padding:13px 0 20px;
+  padding:13px 0 18px;
   scrollbar-width:none;
+  touch-action:pan-x;
 }
-
-.stories::-webkit-scrollbar { display:none; }
+.stories::-webkit-scrollbar {display:none}
 
 .story {
-  min-width:65px;
+  min-width:62px;
   text-align:center;
+  color:#555;
   font-size:11px;
-  color:#444;
 }
 
 .story-ring {
-  height:63px;
-  width:63px;
+  width:59px;
+  height:59px;
   padding:3px;
-  border-radius:50%;
   margin:auto auto 6px;
-  background:linear-gradient(45deg,#ffb347,#e1306c,#8b5cf6);
+  border-radius:50%;
+  background:linear-gradient(45deg,#ffc15c,#ed347b,#9859e8);
 }
 
 .story-inner {
@@ -123,51 +116,62 @@ header {
   height:100%;
   border:2px solid white;
   border-radius:50%;
-  background:#f2f2f2;
   display:grid;
   place-items:center;
+  background:#f1f1f1;
   font-size:20px;
   font-weight:700;
-  color:#333;
 }
 
-/* PAGES */
+.heading {
+  font-size:20px;
+  font-weight:800;
+  margin:18px 2px 14px;
+}
+
+/* PAGE SYSTEM */
 
 .page {
   display:none;
   width:100%;
   min-height:65vh;
-  animation:pageIn .3s ease;
 }
 
-.page.active { display:block; }
+.page.active {display:block}
 
-@keyframes pageIn {
-  from { opacity:0; transform:translateY(9px); }
-  to { opacity:1; transform:translateY(0); }
+.page.slide-left {
+  animation:slideLeft .27s ease both;
 }
 
-.heading {
-  font-size:21px;
-  font-weight:800;
-  margin:18px 0 15px;
+.page.slide-right {
+  animation:slideRight .27s ease both;
+}
+
+@keyframes slideLeft {
+  from {opacity:0;transform:translateX(38px)}
+  to {opacity:1;transform:translateX(0)}
+}
+
+@keyframes slideRight {
+  from {opacity:0;transform:translateX(-38px)}
+  to {opacity:1;transform:translateX(0)}
 }
 
 /* POSTS */
 
 .post {
-  margin:0 0 22px;
   background:#fff;
   border:1px solid #eee;
   border-radius:19px;
   overflow:hidden;
+  margin-bottom:19px;
 }
 
 .post-head {
   display:flex;
   align-items:center;
   gap:10px;
-  padding:13px;
+  padding:12px;
 }
 
 .post-user {
@@ -178,22 +182,22 @@ header {
 
 .post-user small {
   display:block;
-  color:#888;
   font-size:11px;
-  margin-top:3px;
   font-weight:400;
+  color:#888;
+  margin-top:3px;
 }
 
 .post-image {
-  width:100%;
-  max-height:480px;
-  object-fit:cover;
   display:block;
+  width:100%;
+  max-height:430px;
+  object-fit:cover;
   background:#eee;
 }
 
 .post-text {
-  padding:12px 13px 4px;
+  padding:12px 13px 3px;
   font-size:14px;
   line-height:1.5;
   overflow-wrap:anywhere;
@@ -202,24 +206,24 @@ header {
 .post-actions {
   display:flex;
   align-items:center;
-  gap:19px;
+  gap:17px;
   padding:12px 13px;
 }
 
 .action {
   border:0;
-  background:none;
-  font-size:22px;
-  color:#111;
   padding:0;
+  background:none;
+  color:#111;
+  font-size:23px;
 }
 
-.action.liked { color:#ed4264; }
+.action.liked {color:#ed4264}
 
 .like-count {
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
-  margin-left:-14px;
+  margin-left:-13px;
 }
 
 .comment-list {
@@ -228,54 +232,55 @@ header {
 }
 
 .comment {
-  margin:6px 0;
   color:#555;
+  margin:7px 0;
 }
 
-.comment strong { color:#111; }
+.comment strong {color:#111}
 
 .comment-form {
   display:flex;
   gap:7px;
-  padding:0 13px 13px;
+  padding:0 12px 13px;
 }
 
 .comment-form input {
   flex:1;
   min-width:0;
-  border:0;
-  background:#f4f4f4;
   padding:11px;
-  border-radius:20px;
+  border:0;
   outline:none;
+  border-radius:20px;
+  background:#f3f3f3;
 }
 
 .comment-form button {
   border:0;
-  background:#111;
-  color:#fff;
   border-radius:20px;
-  padding:0 15px;
+  padding:0 14px;
+  background:#111;
+  color:white;
 }
 
-/* CREATE */
+/* INPUTS */
 
 .card {
+  background:white;
   border:1px solid #eee;
-  border-radius:22px;
-  padding:18px;
-  background:#fff;
-  box-shadow:0 5px 20px #00000008;
+  border-radius:21px;
+  padding:17px;
+  box-shadow:0 5px 22px #00000008;
 }
 
 .field {
+  display:block;
   width:100%;
-  padding:14px;
-  border:1px solid #e9e9e9;
-  background:#fafafa;
-  border-radius:13px;
+  padding:13px;
   margin:9px 0 17px;
+  border:1px solid #e8e8e8;
+  border-radius:13px;
   outline:none;
+  background:#f8f8f8;
   color:#111;
 }
 
@@ -285,54 +290,54 @@ textarea.field {
 }
 
 .primary {
-  border:0;
-  background:#111;
-  color:#fff;
-  padding:14px 20px;
-  border-radius:15px;
-  font-weight:750;
   width:100%;
+  padding:14px;
+  border:0;
+  border-radius:14px;
+  background:#111;
+  color:white;
+  font-weight:750;
 }
 
 /* SEARCH */
 
 .search-box {
   display:flex;
-  gap:10px;
   align-items:center;
-  padding:14px 17px;
+  gap:10px;
+  padding:13px 15px;
+  margin:13px 0;
   background:#f3f3f3;
   border-radius:17px;
-  margin:15px 0;
 }
 
 .search-box input {
-  border:0;
-  background:none;
-  outline:none;
+  flex:1;
   width:100%;
-  font-size:15px;
+  border:0;
+  outline:none;
+  background:transparent;
 }
 
 /* PROFILE */
 
 .profile {
   text-align:center;
-  padding:25px 15px;
+  padding:24px 15px;
 }
 
 .profile .avatar {
-  width:90px;
-  height:90px;
-  font-size:30px;
-  margin:0 auto 15px;
+  width:85px;
+  height:85px;
+  font-size:28px;
+  margin:0 auto 13px;
 }
 
 .stats {
   display:flex;
   justify-content:center;
-  gap:45px;
-  margin:22px;
+  gap:42px;
+  margin:20px;
 }
 
 .stats strong {
@@ -350,13 +355,13 @@ textarea.field {
 .message {
   display:flex;
   align-items:center;
-  gap:13px;
-  padding:14px 5px;
+  gap:12px;
+  padding:14px 3px;
   border-bottom:1px solid #eee;
 }
 
-.message-info { flex:1; }
-.message-info strong { font-size:14px; }
+.message-info {flex:1}
+.message-info strong {font-size:14px}
 .message-info p {
   margin:4px 0 0;
   font-size:12px;
@@ -366,149 +371,171 @@ textarea.field {
 /* REELS */
 
 .reel {
-  height:420px;
-  background:linear-gradient(150deg,#292929,#777);
-  border-radius:20px;
+  height:390px;
   margin-bottom:18px;
-  color:#fff;
+  padding:19px;
+  border-radius:20px;
+  color:white;
   display:flex;
   align-items:flex-end;
-  padding:20px;
-  position:relative;
-  overflow:hidden;
+  background:linear-gradient(145deg,#28213d,#81708f);
 }
 
-.reel-content {
-  position:relative;
-  z-index:1;
+.reel:nth-child(3) {
+  background:linear-gradient(145deg,#172c38,#739a9d);
 }
 
 .reel button {
-  border:0;
   background:#ffffff30;
+  border:1px solid #ffffff70;
   color:white;
   border-radius:20px;
-  padding:10px 15px;
+  padding:9px 15px;
 }
 
-/* LIQUID GLASS NAVIGATION */
+.empty {
+  padding:30px 10px;
+  text-align:center;
+  color:#888;
+  font-size:13px;
+}
+
+/* SMALL LIQUID GLASS NAV */
 
 .bottom-nav {
   position:fixed;
   z-index:100;
-  bottom:calc(17px + env(safe-area-inset-bottom));
   left:50%;
   transform:translateX(-50%);
-  width:min( calc(100% - 30px), 580px);
-  height:76px;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+
+  width:min(calc(100% - 46px),470px);
+  height:65px;
+  padding:6px 7px;
+
   display:flex;
   align-items:center;
   justify-content:space-around;
-  gap:3px;
-  padding:8px 9px;
+  gap:2px;
 
-  background:rgba(255,255,255,.64);
-  border:1px solid rgba(255,255,255,.95);
-  border-radius:45px;
+  border:1px solid rgba(255,255,255,.96);
+  border-radius:38px;
 
-  backdrop-filter:blur(35px) saturate(200%);
-  -webkit-backdrop-filter:blur(35px) saturate(200%);
+  background:rgba(255,255,255,.52);
+
+  backdrop-filter:blur(42px) saturate(220%);
+  -webkit-backdrop-filter:blur(42px) saturate(220%);
 
   box-shadow:
-    0 10px 35px rgba(0,0,0,.14),
-    inset 0 1px 2px #ffffff,
-    0 0 12px #ffffffaa;
+    0 9px 30px rgba(0,0,0,.13),
+    inset 0 1px 3px white,
+    inset 0 -2px 5px rgba(160,160,160,.13);
+}
+
+.bottom-nav::before {
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.72),
+    rgba(255,255,255,.08) 48%,
+    rgba(255,255,255,.5)
+  );
+  pointer-events:none;
 }
 
 .nav-item {
+  position:relative;
+  z-index:1;
   flex:1;
-  height:57px;
   min-width:0;
+  height:49px;
+  padding:3px;
   border:0;
-  border-radius:35px;
+  border-radius:30px;
   background:transparent;
-  color:#111;
+  color:#161616;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:3px;
-  transition:all .25s ease;
+  gap:2px;
+
+  transition:background .2s,transform .2s;
 }
 
+.nav-item:active {transform:scale(.92)}
+
 .nav-item svg {
-  width:25px;
-  height:25px;
-  stroke:currentColor;
+  width:22px;
+  height:22px;
   fill:none;
+  stroke:currentColor;
   stroke-width:2;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
 
 .nav-item.active {
-  background:rgba(255,255,255,.94);
-  box-shadow:
-    0 3px 13px #00000012,
-    inset 0 1px 2px #fff;
+  background:rgba(255,255,255,.87);
+  box-shadow:0 3px 13px #00000010,inset 0 1px 2px white;
 }
 
-.nav-item.active svg {
-  stroke-width:2.5;
-}
+.nav-item.active svg {stroke-width:2.5}
 
 .nav-label {
-  font-size:9px;
+  font-size:8px;
   font-weight:650;
 }
 
-/* SEPARATE ROUND SEARCH GLASS */
+/* SEPARATE SEARCH ORB */
 
 .search-orb {
-  width:67px;
-  height:67px;
+  position:relative;
+  z-index:2;
   flex-shrink:0;
-  border:1px solid rgba(255,255,255,.95);
+  width:55px;
+  height:55px;
+  margin-left:3px;
+  border:1px solid rgba(255,255,255,.96);
   border-radius:50%;
+  background:rgba(255,255,255,.58);
+  color:#111;
+
   display:grid;
   place-items:center;
-  background:rgba(255,255,255,.73);
-  backdrop-filter:blur(35px) saturate(200%);
-  -webkit-backdrop-filter:blur(35px) saturate(200%);
-  box-shadow:0 7px 25px #00000015,
-             inset 0 1px 3px #fff;
-  color:#111;
-  transition:.25s;
+
+  backdrop-filter:blur(42px) saturate(220%);
+  -webkit-backdrop-filter:blur(42px) saturate(220%);
+
+  box-shadow:
+    0 6px 20px #00000015,
+    inset 0 2px 4px white,
+    inset 0 -2px 5px #0000000d;
 }
 
 .search-orb svg {
-  width:29px;
-  height:29px;
-  stroke:currentColor;
+  width:24px;
+  height:24px;
   fill:none;
+  stroke:currentColor;
   stroke-width:2.2;
   stroke-linecap:round;
 }
 
 .search-orb.active {
-  background:#fff;
-  transform:scale(1.06);
-}
-
-/* EMPTY */
-
-.empty {
-  text-align:center;
-  color:#888;
-  padding:35px 10px;
-  font-size:14px;
+  background:rgba(255,255,255,.95);
+  transform:scale(1.04);
 }
 
 @media(max-width:380px) {
-  .bottom-nav { height:68px; }
-  .nav-item { height:52px; }
-  .search-orb { width:60px;height:60px; }
-  .nav-item svg { width:22px;height:22px; }
+  .bottom-nav {height:61px}
+  .nav-item {height:46px}
+  .nav-item svg {width:20px;height:20px}
+  .search-orb {width:51px;height:51px}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -561,13 +588,13 @@ textarea.field {
 
   <div class="heading">For you</div>
   <div id="feed"></div>
-
 </section>
 
-<!-- MESSAGES -->
+<!-- DM -->
 
 <section class="page" id="messages">
   <div class="heading">Messages</div>
+
   <div class="search-box">
     <span>⌕</span>
     <input placeholder="Search messages...">
@@ -599,7 +626,8 @@ textarea.field {
     </div>
     <small>2h</small>
   </div>
-  <p class="empty">Demo conversations · Messaging is not connected yet.</p>
+
+  <div class="empty">Demo conversations · Online messaging is not connected.</div>
 </section>
 
 <!-- REELS -->
@@ -608,7 +636,7 @@ textarea.field {
   <div class="heading">Reels</div>
 
   <div class="reel">
-    <div class="reel-content">
+    <div>
       <h3>Explore the world 🌍</h3>
       <p>Discover beautiful moments.</p>
       <button onclick="alert('Reels demo')">♡ Like</button>
@@ -616,7 +644,7 @@ textarea.field {
   </div>
 
   <div class="reel">
-    <div class="reel-content">
+    <div>
       <h3>Stay creative ✨</h3>
       <p>Your world. Your story.</p>
       <button onclick="alert('Reels demo')">♡ Like</button>
@@ -665,10 +693,10 @@ textarea.field {
 
   <div class="card">
     <label>Username</label>
-    <input class="field" id="postName" placeholder="Your name">
+    <input class="field" id="postName" placeholder="Your name" maxlength="24">
 
     <label>Write something</label>
-    <textarea class="field" id="postText" placeholder="Share your moment..."></textarea>
+    <textarea class="field" id="postText" placeholder="Share your moment..." maxlength="500"></textarea>
 
     <label>Image URL (optional)</label>
     <input class="field" id="postImage" placeholder="https://example.com/photo.jpg">
@@ -679,7 +707,7 @@ textarea.field {
 
 </div>
 
-<!-- FLOATING LIQUID GLASS BAR -->
+<!-- LIQUID GLASS NAV -->
 
 <nav class="bottom-nav">
 
@@ -703,7 +731,7 @@ textarea.field {
     <svg viewBox="0 0 24 24">
       <rect x="3" y="3" width="18" height="18" rx="5"/>
       <path d="m10 8 6 4-6 4z"/>
-      <path d="m3 9 18 0M8 3l4 6M15 3l4 6"/>
+      <path d="M3 9h18M8 3l4 6M15 3l4 6"/>
     </svg>
     <span class="nav-label">Reels</span>
   </button>
@@ -726,14 +754,14 @@ textarea.field {
 </nav>
 
 <script>
-const KEY = "instaxyou_posts_v2";
-const NAMEKEY = "instaxyou_username_v2";
+const KEY = "instaxyou_posts_v3";
+const NAMEKEY = "instaxyou_username_v3";
 
 let username = localStorage.getItem(NAMEKEY) || "You";
 
 const samples = [
   {
-    id:"1",
+    id:"sample1",
     name:"Alex",
     text:"Chasing beautiful moments. Life is an adventure ✨",
     image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",
@@ -742,7 +770,7 @@ const samples = [
     comments:[]
   },
   {
-    id:"2",
+    id:"sample2",
     name:"Mia",
     text:"A little sunshine makes everything better ☀️",
     image:"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900",
@@ -751,7 +779,7 @@ const samples = [
     comments:[]
   },
   {
-    id:"3",
+    id:"sample3",
     name:"Jay",
     text:"Stay creative. Keep exploring. 💜",
     image:"",
@@ -761,18 +789,23 @@ const samples = [
   }
 ];
 
-function load() {
+function loadPosts() {
   try {
-    return JSON.parse(localStorage.getItem(KEY)) || samples;
+    const saved = localStorage.getItem(KEY);
+    return saved ? JSON.parse(saved) : samples;
   } catch(e) {
     return samples;
   }
 }
 
-let posts = load();
+let posts = loadPosts();
 
 function save() {
-  localStorage.setItem(KEY,JSON.stringify(posts));
+  try {
+    localStorage.setItem(KEY,JSON.stringify(posts));
+  } catch(e) {
+    alert("Unable to save posts in browser storage.");
+  }
 }
 
 function safe(s) {
@@ -788,7 +821,7 @@ function initial(n) {
 
 function card(p) {
   const image = p.image && /^https?:\/\//i.test(p.image)
-    ? `<img class="post-image" src="${safe(p.image)}" loading="lazy" alt="Post">`
+    ? `<img class="post-image" src="${safe(p.image)}" alt="Post" loading="lazy">`
     : "";
 
   const comments = (p.comments || []).map(c=>
@@ -811,25 +844,27 @@ function card(p) {
     <div class="post-text">${safe(p.text)}</div>
 
     <div class="post-actions">
-      <button class="action ${p.liked?'liked':''}"
-        onclick="likePost('${p.id}')">
+      <button class="action ${p.liked?'liked':''}" onclick="likePost('${p.id}')">
         ${p.liked?'♥':'♡'}
       </button>
       <span class="like-count">${p.likes} likes</span>
 
-      <button class="action"
-        onclick="document.getElementById('c${p.id}').focus()">◯</button>
-
+      <button class="action" onclick="focusComment('${p.id}')">◯</button>
       <button class="action" onclick="sharePost('${p.id}')">↗</button>
     </div>
 
     <div class="comment-list">${comments}</div>
 
     <div class="comment-form">
-      <input id="c${p.id}" maxlength="200" placeholder="Add a comment...">
+      <input id="comment-${p.id}" maxlength="200" placeholder="Add a comment...">
       <button onclick="commentPost('${p.id}')">Send</button>
     </div>
   </article>`;
+}
+
+function focusComment(id) {
+  const el = document.getElementById("comment-"+id);
+  if(el) el.focus();
 }
 
 function renderFeed() {
@@ -851,9 +886,9 @@ function likePost(id) {
 
 function commentPost(id) {
   const p = posts.find(x=>x.id===id);
-  const input = document.getElementById("c"+id);
+  const input = document.getElementById("comment-"+id);
 
-  if(!p || !input.value.trim()) return;
+  if(!p || !input || !input.value.trim()) return;
 
   p.comments.push({
     name:username,
@@ -880,7 +915,7 @@ function createPost() {
   }
 
   posts.unshift({
-    id:Date.now().toString(),
+    id:"p"+Date.now(),
     name:name.slice(0,24),
     text:text.slice(0,500),
     image,
@@ -915,12 +950,13 @@ function saveProfile() {
 
 function renderProfile() {
   const mine = posts.filter(p=>
-    p.name.toLowerCase()===username.toLowerCase()
+    p.name.toLowerCase() === username.toLowerCase()
   );
 
   document.getElementById("profileName").textContent=username;
   document.getElementById("profileAvatar").textContent=initial(username);
   document.getElementById("topAvatar").textContent=initial(username);
+
   document.getElementById("editName").value=username;
   document.getElementById("postName").value=username;
 
@@ -934,9 +970,9 @@ function renderProfile() {
 }
 
 function renderSearch() {
-  const q=document.getElementById("searchInput").value.toLowerCase();
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
 
-  const result=posts.filter(p=>
+  const result = posts.filter(p=>
     (p.name+" "+p.text).toLowerCase().includes(q)
   );
 
@@ -952,7 +988,7 @@ function renderAll() {
 }
 
 function sharePost(id) {
-  const p=posts.find(x=>x.id===id);
+  const p = posts.find(x=>x.id===id);
   if(!p) return;
 
   if(navigator.share) {
@@ -961,25 +997,39 @@ function sharePost(id) {
       text:p.text
     }).catch(()=>{});
   } else {
-    alert("Share is not supported on this browser.");
+    alert("Sharing is not supported in this browser.");
   }
 }
 
-/* PAGE NAVIGATION */
+/* NAVIGATION */
 
-const pageNames=["home","messages","reels","profile","search","create"];
-let current="home";
+const pageNames = [
+  "home","messages","reels","profile","search","create"
+];
 
-function go(id) {
+const swipePages = [
+  "home","messages","reels","profile","search"
+];
+
+let current = "home";
+
+function go(id,direction="left") {
   if(!pageNames.includes(id)) return;
 
-  current=id;
+  current = id;
 
   document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
+    p.classList.remove("active","slide-left","slide-right");
   });
 
-  document.getElementById(id).classList.add("active");
+  const page = document.getElementById(id);
+  page.classList.add("active");
+
+  if(direction==="left") {
+    page.classList.add("slide-left");
+  } else if(direction==="right") {
+    page.classList.add("slide-right");
+  }
 
   document.querySelectorAll(".nav-item").forEach(b=>{
     b.classList.toggle("active",b.dataset.page===id);
@@ -992,43 +1042,69 @@ function go(id) {
   if(id==="profile") renderProfile();
   if(id==="search") renderSearch();
 
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo({top:0,behavior:"instant"});
 }
 
-/* SWIPE BETWEEN PAGES */
+/* RELIABLE TOUCH SWIPING */
 
-let startX=0;
-let startY=0;
+const swipeArea = document.querySelector(".app");
 
-const swipePages=["home","messages","reels","profile","search"];
+let startX = 0;
+let startY = 0;
+let tracking = false;
 
-document.addEventListener("touchstart",e=>{
-  if(e.touches.length!==1) return;
-  startX=e.touches[0].clientX;
-  startY=e.touches[0].clientY;
+swipeArea.addEventListener("touchstart",function(e) {
+  if(e.touches.length !== 1) {
+    tracking = false;
+    return;
+  }
+
+  const target = e.target;
+
+  if(target.closest(
+    "input,textarea,button,.stories,.comment-form"
+  )) {
+    tracking = false;
+    return;
+  }
+
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  tracking = true;
+
 },{passive:true});
 
-document.addEventListener("touchend",e=>{
-  if(!startX) return;
+swipeArea.addEventListener("touchend",function(e) {
+  if(!tracking) return;
 
-  const dx=e.changedTouches[0].clientX-startX;
-  const dy=e.changedTouches[0].clientY-startY;
+  tracking = false;
 
-  startX=0;
+  const endX = e.changedTouches[0].clientX;
+  const endY = e.changedTouches[0].clientY;
 
-  if(Math.abs(dx)<65 || Math.abs(dx)<Math.abs(dy)*1.3) return;
+  const dx = endX-startX;
+  const dy = endY-startY;
 
-  const index=swipePages.indexOf(current);
+  if(Math.abs(dx)<45) return;
+  if(Math.abs(dx)<Math.abs(dy)*1.3) return;
+
+  const index = swipePages.indexOf(current);
+
   if(index===-1) return;
 
   if(dx<0 && index<swipePages.length-1) {
-    go(swipePages[index+1]);
+    go(swipePages[index+1],"left");
   }
 
   if(dx>0 && index>0) {
-    go(swipePages[index-1]);
+    go(swipePages[index-1],"right");
   }
+
 },{passive:true});
+
+swipeArea.addEventListener("touchcancel",function() {
+  tracking = false;
+});
 
 /* START */
 
