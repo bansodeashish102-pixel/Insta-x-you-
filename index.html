@@ -1,1 +1,417 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100b20">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="insta x you">
+<meta name="description" content="Share your world with insta x you.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<title>insta x you</title>
+
+<style>
+:root {
+  --bg:#100b20;
+  --panel:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.13);
+  --purple:#a78bfa;
+  --pink:#e879f9;
+  --text:#f8f5ff;
+  --muted:#aaa0bf;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  color:var(--text);
+  font-family:Inter,system-ui,Arial,sans-serif;
+  background:
+    radial-gradient(ellipse at 10% 5%,#51218b 0,transparent 35%),
+    radial-gradient(ellipse at 95% 35%,#30135c 0,transparent 35%),
+    var(--bg);
+  min-height:100vh;
+}
+button,input,textarea {font:inherit}
+button {cursor:pointer}
+.app {max-width:650px;margin:auto;padding:16px 15px 100px}
+header {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:12px 2px 22px;
+}
+.logo {
+  font-size:25px;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(100deg,#c4b5fd,#f0abfc);
+  color:transparent;background-clip:text;
+}
+.avatar {
+  width:39px;height:39px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);
+  font-weight:800;flex-shrink:0;
+}
+.glass {
+  background:var(--panel);
+  border:1px solid var(--line);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:20px;
+  box-shadow:0 12px 40px #0003;
+}
+.welcome {padding:19px;margin-bottom:18px}
+.welcome h1 {font-size:24px;margin:0 0 6px}
+.muted {color:var(--muted);font-size:13px}
+.search {
+  width:100%;padding:14px 16px;border-radius:15px;
+  color:white;background:#ffffff0c;border:1px solid var(--line);
+  outline:none;margin-bottom:17px;
+}
+.search:focus,input:focus,textarea:focus {
+  border-color:var(--purple);
+}
+.section-title {
+  font-size:17px;font-weight:750;margin:20px 2px 12px;
+}
+.stories {
+  display:flex;gap:14px;overflow-x:auto;padding:5px 2px 17px;
+}
+.story {text-align:center;min-width:62px;font-size:11px;color:var(--muted)}
+.story-ring {
+  width:58px;height:58px;border-radius:50%;
+  padding:3px;margin:0 auto 6px;
+  background:linear-gradient(140deg,#c084fc,#ec4899,#8b5cf6);
+}
+.story-ring span {
+  background:#25163b;width:100%;height:100%;
+  border-radius:50%;display:grid;place-items:center;
+  border:2px solid #241638;color:white;font-weight:800;
+}
+.composer {padding:14px;margin-bottom:20px}
+.composer-top {display:flex;gap:11px;align-items:center}
+.composer input {
+  min-width:0;flex:1;border:0;outline:0;
+  padding:12px;border-radius:14px;
+  background:#ffffff0d;color:white;
+}
+.primary {
+  border:0;color:white;padding:12px 17px;
+  border-radius:13px;font-weight:750;
+  background:linear-gradient(110deg,#7c3aed,#c026d3);
+}
+.post {padding:16px;margin-bottom:17px}
+.post-head {display:flex;align-items:center;gap:10px}
+.post-user {flex:1}
+.post-user strong {font-size:14px}
+.post-user small {display:block;color:var(--muted);margin-top:3px}
+.post-text {font-size:14px;line-height:1.6;margin:15px 0}
+.post-image {
+  width:100%;height:230px;object-fit:cover;
+  border-radius:15px;background:#35204c;
+}
+.post-actions {
+  display:flex;align-items:center;gap:20px;
+  padding-top:14px;
+}
+.action {
+  background:none;border:0;color:#d9d0eb;
+  font-size:14px;padding:4px 0;
+}
+.action.liked {color:#f472b6}
+.comments {margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.comment {font-size:13px;margin:9px 0;color:#e8e0f4}
+.comment strong {color:#c4b5fd;margin-right:5px}
+.comment-form {display:flex;gap:7px;margin-top:12px}
+.comment-form input {
+  min-width:0;flex:1;padding:11px;border-radius:12px;
+  background:#ffffff0b;border:1px solid var(--line);
+  color:white;outline:none;
+}
+.comment-form button {
+  border:0;border-radius:11px;padding:0 13px;
+  color:white;background:#7c3aed;
+}
+.page {display:none}
+.page.active {display:block}
+.field {
+  width:100%;padding:13px;margin:8px 0;
+  border-radius:12px;background:#ffffff0b;
+  border:1px solid var(--line);color:white;outline:none;
+}
+textarea.field {resize:vertical;min-height:110px}
+.form-card {padding:18px}
+.profile {text-align:center;padding:25px 15px}
+.profile .avatar {width:85px;height:85px;font-size:27px;margin:auto auto 13px}
+.stats {display:flex;justify-content:center;gap:38px;margin:20px}
+.stat strong {display:block;font-size:19px}
+.stat span {font-size:12px;color:var(--muted)}
+.nav {
+  position:fixed;bottom:0;left:0;right:0;z-index:10;
+  padding:11px max(14px,calc((100vw - 620px)/2)) calc(11px + env(safe-area-inset-bottom));
+  display:flex;justify-content:space-around;
+  background:#171027eF;border-top:1px solid var(--line);
+  backdrop-filter:blur(20px);
+}
+.nav button {
+  background:none;border:0;color:#aaa0bf;
+  display:flex;flex-direction:column;align-items:center;
+  gap:4px;font-size:11px;
+}
+.nav button.active {color:#c4b5fd}
+.nav .symbol {font-size:21px}
+.empty {padding:30px;text-align:center;color:var(--muted)}
+.notice {font-size:12px;color:var(--muted);text-align:center;padding:20px}
+.hidden {display:none!important}
+@media(min-width:650px) {
+  .app {padding-top:25px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+<header>
+  <div class="logo">insta x you ✦</div>
+  <div class="avatar" id="headerAvatar">Y</div>
+</header>
+
+<section class="welcome glass">
+  <h1>Discover your world ✨</h1>
+  <div class="muted">Your space. Your people. Your moments.</div>
+</section>
+
+<div class="page active" id="home">
+  <input class="search" id="search" placeholder="⌕ Search posts or people..." oninput="renderFeed()">
+
+  <div class="section-title">Stories</div>
+  <div class="stories">
+    <div class="story"><div class="story-ring"><span>Y</span></div>Your story</div>
+    <div class="story"><div class="story-ring"><span>A</span></div>Alex</div>
+    <div class="story"><div class="story-ring"><span>M</span></div>Mia</div>
+    <div class="story"><div class="story-ring"><span>J</span></div>Jay</div>
+    <div class="story"><div class="story-ring"><span>S</span></div>Sara</div>
+  </div>
+
+  <div class="section-title">Share a moment</div>
+  <div class="composer glass">
+    <div class="composer-top">
+      <div class="avatar">Y</div>
+      <input id="quickPost" placeholder="What's happening?">
+      <button class="primary" onclick="quickCreate()">Post</button>
+    </div>
+  </div>
+
+  <div class="section-title">Your feed ✨</div>
+  <div id="feed"></div>
+</div>
+
+<div class="page" id="create">
+  <div class="section-title">Create a post ✦</div>
+  <div class="form-card glass">
+    <label class="muted">Your username</label>
+    <input class="field" id="postName" maxlength="24" placeholder="Your name">
+    <label class="muted">Write something</label>
+    <textarea class="field" id="postText" maxlength="500" placeholder="Share your thoughts..."></textarea>
+    <label class="muted">Image URL (optional)</label>
+    <input class="field" id="postImage" placeholder="https://example.com/photo.jpg">
+    <button class="primary" style="width:100%;margin-top:12px" onclick="createPost()">Publish post ✨</button>
+  </div>
+</div>
+
+<div class="page" id="profile">
+  <div class="profile glass">
+    <div class="avatar" id="profileAvatar">Y</div>
+    <h2 id="profileName">Your Profile</h2>
+    <p class="muted">Welcome to your insta x you space.</p>
+    <div class="stats">
+      <div class="stat"><strong id="postCount">0</strong><span>Posts</span></div>
+      <div class="stat"><strong id="likeCount">0</strong><span>Likes</span></div>
+    </div>
+    <input class="field" id="editName" maxlength="24" placeholder="Change your username">
+    <button class="primary" onclick="saveProfile()">Save profile</button>
+  </div>
+  <div class="section-title">Your posts</div>
+  <div id="myPosts"></div>
+</div>
+
+<div class="page" id="discover">
+  <div class="section-title">Discover 🔎</div>
+  <input class="search" id="discoverSearch" placeholder="Search posts and usernames..." oninput="discoverPosts()">
+  <div id="discoverResults"></div>
+</div>
+</div>
+
+<nav class="nav">
+  <button class="active" onclick="showPage('home',this)"><span class="symbol">⌂</span>Home</button>
+  <button onclick="showPage('discover',this)"><span class="symbol">⌕</span>Search</button>
+  <button onclick="showPage('create',this)"><span class="symbol">＋</span>Create</button>
+  <button onclick="showPage('profile',this)"><span class="symbol">◉</span>Profile</button>
+</nav>
+
+<script>
+const STORAGE_KEY = "instaxyou_posts_v1";
+const NAME_KEY = "instaxyou_name_v1";
+
+let username = localStorage.getItem(NAME_KEY) || "You";
+
+const samples = [
+  {id:"s1",name:"Alex",text:"Chasing beautiful moments. Life is an adventure ✨",image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",likes:12,liked:false,comments:[{name:"Mia",text:"Amazing view!"}]},
+  {id:"s2",name:"Mia",text:"A little sunshine makes everything better ☀️",image:"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900",likes:24,liked:false,comments:[]},
+  {id:"s3",name:"Jay",text:"Stay creative. Keep exploring. 💜",image:"",likes:7,liked:false,comments:[]}
+];
+
+function loadPosts() {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : samples;
+  } catch { return samples; }
+}
+let posts = loadPosts();
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY,JSON.stringify(posts)); }
+  catch { alert("Storage is full. Try removing some posts or images."); }
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+function initials(name) {
+  return escapeHTML((name.trim()[0] || "Y").toUpperCase());
+}
+
+function renderCard(p) {
+  const image = p.image && /^https?:\/\//i.test(p.image)
+    ? `<img class="post-image" src="${escapeHTML(p.image)}" alt="Post image" loading="lazy" onerror="this.style.display='none'">`
+    : "";
+  const comments = (p.comments || []).map(c =>
+    `<div class="comment"><strong>${escapeHTML(c.name)}</strong>${escapeHTML(c.text)}</div>`
+  ).join("");
+
+  return `
+  <article class="post glass">
+    <div class="post-head">
+      <div class="avatar">${initials(p.name)}</div>
+      <div class="post-user"><strong>${escapeHTML(p.name)}</strong><small>Community member · Public demo</small></div>
+    </div>
+    <div class="post-text">${escapeHTML(p.text)}</div>
+    ${image}
+    <div class="post-actions">
+      <button class="action ${p.liked?'liked':''}" onclick="toggleLike('${p.id}')">${p.liked?'♥':'♡'} ${p.likes}</button>
+      <button class="action" onclick="document.getElementById('comment-${p.id}').focus()">◯ ${p.comments.length} comments</button>
+    </div>
+    <div class="comments">
+      ${comments}
+      <div class="comment-form">
+        <input id="comment-${p.id}" maxlength="200" placeholder="Write a comment...">
+        <button onclick="addComment('${p.id}')">Send</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderFeed() {
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const filtered = posts.filter(p=>
+    (p.name+" "+p.text).toLowerCase().includes(q)
+  );
+  document.getElementById("feed").innerHTML =
+    filtered.length ? filtered.map(renderCard).join("") :
+    '<div class="empty glass">No posts found. Try another search.</div>';
+}
+
+function toggleLike(id) {
+  const p=posts.find(x=>x.id===id);
+  if(!p)return;
+  p.liked=!p.liked;
+  p.likes=Math.max(0,p.likes+(p.liked?1:-1));
+  save();renderAll();
+}
+
+function addComment(id) {
+  const p=posts.find(x=>x.id===id);
+  const input=document.getElementById("comment-"+id);
+  if(!p || !input || !input.value.trim())return;
+  p.comments.push({name:username,text:input.value.trim()});
+  save();renderAll();
+}
+
+function createPost(textOverride) {
+  const name=(document.getElementById("postName").value.trim() || username).slice(0,24);
+  const text=(textOverride ?? document.getElementById("postText").value).trim();
+  const image=(document.getElementById("postImage").value || "").trim();
+
+  if(!text){alert("Write something before posting.");return;}
+  if(image && !/^https?:\/\/\S+$/i.test(image)){alert("Please enter a valid image URL.");return;}
+
+  posts.unshift({
+    id:"p"+Date.now()+Math.random().toString(36).slice(2,6),
+    name,text,image,likes:0,liked:false,comments:[]
+  });
+  save();
+  document.getElementById("postText").value="";
+  document.getElementById("postImage").value="";
+  document.getElementById("quickPost").value="";
+  renderAll();showPage("home",document.querySelector(".nav button"));
+}
+
+function quickCreate() {
+  createPost(document.getElementById("quickPost").value);
+}
+
+function saveProfile() {
+  const name=document.getElementById("editName").value.trim();
+  if(!name){alert("Enter a username.");return;}
+  username=name.slice(0,24);
+  localStorage.setItem(NAME_KEY,username);
+  document.getElementById("postName").value=username;
+  renderAll();
+  alert("Profile saved!");
+}
+
+function discoverPosts() {
+  const q=document.getElementById("discoverSearch").value.toLowerCase().trim();
+  const results=posts.filter(p=>(p.name+" "+p.text).toLowerCase().includes(q));
+  document.getElementById("discoverResults").innerHTML=
+    results.length?results.map(renderCard).join(""):'<div class="empty glass">Nothing found.</div>';
+}
+
+function renderProfile() {
+  const mine=posts.filter(p=>p.name.toLowerCase()===username.toLowerCase());
+  document.getElementById("profileName").textContent=username;
+  document.getElementById("profileAvatar").textContent=initials(username);
+  document.getElementById("headerAvatar").textContent=initials(username);
+  document.getElementById("postCount").textContent=mine.length;
+  document.getElementById("likeCount").textContent=mine.reduce((n,p)=>n+p.likes,0);
+  document.getElementById("myPosts").innerHTML=
+    mine.length?mine.map(renderCard).join(""):'<div class="empty glass">Your posts will appear here.</div>';
+}
+
+function renderAll() {
+  renderFeed();renderProfile();discoverPosts();
+}
+
+function showPage(id,button) {
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  if(button)button.classList.add("active");
+  if(id==="profile")renderProfile();
+  if(id==="discover")discoverPosts();
+}
+
+document.getElementById("editName").value=username;
+document.getElementById("postName").value=username;
+renderAll();
+
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./sw.js").catch(()=>{});
+}
+</script>
+</body>
+</html>
+
