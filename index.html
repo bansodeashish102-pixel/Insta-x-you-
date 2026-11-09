@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,34 +9,74 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--purple:#8b5cf6;--text:#171717}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f7f7fa;color:var(--text);overflow-x:hidden}
+:root{
+ --purple:#8b5cf6;
+ --ink:#171717;
+ --muted:#888;
+}
+body{
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:#f7f7fa;
+ color:var(--ink);
+ overflow-x:hidden;
+}
 button,input,textarea{font:inherit}
 button{border:0;background:none;color:inherit;cursor:pointer}
-.app{max-width:520px;margin:auto;min-height:100dvh;background:white;position:relative;overflow:hidden}
-
-header{height:60px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);position:sticky;top:0;z-index:10;backdrop-filter:blur(20px);border-bottom:1px solid #f1f1f1}
+.app{
+ max-width:520px;
+ margin:auto;
+ min-height:100dvh;
+ background:white;
+ position:relative;
+ overflow:hidden;
+}
+header{
+ height:60px;
+ padding:0 17px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ position:sticky;
+ top:0;
+ z-index:10;
+ background:rgba(255,255,255,.88);
+ backdrop-filter:blur(25px);
+ -webkit-backdrop-filter:blur(25px);
+ border-bottom:1px solid #f1f1f1;
+}
 .logo{font-size:24px;font-weight:850;letter-spacing:-1.2px}
 .logo span{color:var(--purple)}
-.header-actions{display:flex;gap:18px;align-items:center}
-.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
-.icon-btn svg,.nav-item svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.header-actions{display:flex;gap:16px}
+.icon-btn{width:36px;height:36px;display:grid;place-items:center}
+svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn svg,.nav-item svg{width:23px;height:23px}
 
-main{min-height:calc(100dvh - 125px);padding-bottom:100px}
-.page{display:none;min-height:70vh;animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
-.page.active{display:block}
-.slide-left{animation-name:slideLeft}
-.slide-right{animation-name:slideRight}
-@keyframes slideLeft{from{opacity:.5;transform:translateX(35px) scale(.98);filter:blur(2px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
-@keyframes slideRight{from{opacity:.5;transform:translateX(-35px) scale(.98);filter:blur(2px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
+main{min-height:calc(100dvh - 120px);padding-bottom:100px}
+.page{display:none;min-height:70vh}
+.page.active{display:block;animation:pageIn .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes pageIn{
+ from{opacity:.55;transform:translateX(18px) scale(.99);filter:blur(2px)}
+ to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}
+}
 
 /* STORIES */
-.stories{display:flex;gap:14px;overflow-x:auto;padding:15px 13px 17px;scrollbar-width:none}
+.stories{
+ display:flex;gap:14px;overflow-x:auto;
+ padding:15px 13px 17px;
+ scrollbar-width:none;
+}
 .stories::-webkit-scrollbar{display:none}
 .story{flex:0 0 67px;text-align:center;font-size:11px;color:#555}
-.story-ring{width:64px;height:64px;padding:3px;border-radius:50%;background:linear-gradient(45deg,#ffb347,#ff3d77,#9b5cff);margin-bottom:5px}
-.story-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid white}
-.story.me .story-ring{background:#eee}
+.story-ring{
+ width:64px;height:64px;padding:3px;
+ border-radius:50%;
+ background:linear-gradient(45deg,#ffb347,#ff3d77,#9b5cff);
+ margin-bottom:5px;
+}
+.story-ring img{
+ width:100%;height:100%;border-radius:50%;
+ object-fit:cover;border:3px solid white;
+}
 
 /* FEED */
 .post{border-top:1px solid #f1f1f1;margin-bottom:16px}
@@ -43,9 +84,9 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 .avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;background:#eee}
 .user-info{flex:1;font-size:13px;font-weight:700}
 .user-info small{display:block;font-size:11px;color:#888;font-weight:400;margin-top:2px}
-.post-image{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f0f0f0}
+.post-image{width:100%;aspect-ratio:1;object-fit:cover;display:block}
 .post-actions{display:flex;align-items:center;gap:15px;padding:11px 13px}
-.post-actions button{font-size:23px;line-height:1}
+.post-actions button{font-size:23px}
 .save{margin-left:auto}
 .post-info{padding:0 13px 12px;font-size:13px;line-height:1.5}
 .likes{font-weight:750;margin-bottom:4px}
@@ -54,77 +95,143 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 .time{font-size:10px;color:#aaa;margin-top:5px}
 .liked{color:#ed3971!important}
 
-/* LIQUID NAVIGATION */
+/* PREMIUM WHITE LIQUID NAV */
 .bottom-nav{
  position:fixed;
- z-index:30;
- bottom:max(12px,env(safe-area-inset-bottom));
+ z-index:100;
+ bottom:max(15px,env(safe-area-inset-bottom));
  left:50%;
  transform:translateX(-50%);
- width:min(94%,490px);
- height:65px;
+ width:min(91%,450px);
+ height:57px;
+ padding:4px 13px;
  display:flex;
  align-items:center;
- justify-content:space-around;
- padding:5px 9px;
- border:1px solid rgba(255,255,255,.9);
- border-radius:25px;
- background:rgba(255,255,255,.76);
- backdrop-filter:blur(28px) saturate(180%);
- -webkit-backdrop-filter:blur(28px) saturate(180%);
- box-shadow:0 8px 35px rgba(30,20,60,.13),inset 0 1px 1px white;
- touch-action:pan-y;
+ justify-content:space-between;
+
+ background:rgba(255,255,255,.77);
+ border:1px solid rgba(255,255,255,.95);
+ border-radius:24px;
+
+ backdrop-filter:blur(32px) saturate(190%);
+ -webkit-backdrop-filter:blur(32px) saturate(190%);
+
+ box-shadow:
+ 0 8px 35px rgba(20,20,30,.12),
+ 0 2px 7px rgba(20,20,30,.05),
+ inset 0 1px 2px rgba(255,255,255,1);
+
+ touch-action:none;
  user-select:none;
  -webkit-user-select:none;
+ -webkit-tap-highlight-color:transparent;
 }
 
-.liquid-indicator{
+/* WHITE LIQUID BUBBLE */
+.liquid{
  position:absolute;
- top:8px;
+ top:5px;
  left:0;
- width:52px;
- height:49px;
+ width:44px;
+ height:45px;
  border-radius:18px;
  pointer-events:none;
- z-index:1;
  opacity:0;
- background:rgba(139,92,246,.15);
- border:1px solid rgba(255,255,255,.9);
- box-shadow:0 3px 14px rgba(139,92,246,.15),inset 0 1px 4px white;
- backdrop-filter:blur(15px);
- -webkit-backdrop-filter:blur(15px);
+ z-index:1;
+
+ background:
+ radial-gradient(ellipse at 30% 15%,rgba(255,255,255,1),transparent 60%),
+ linear-gradient(145deg,rgba(255,255,255,.94),rgba(245,241,255,.78));
+
+ border:1px solid rgba(255,255,255,.98);
+
+ box-shadow:
+ 0 3px 12px rgba(100,80,150,.10),
+ 0 1px 3px rgba(0,0,0,.04),
+ inset 0 2px 4px white,
+ inset 0 -2px 5px rgba(160,140,190,.08);
+
+ backdrop-filter:blur(18px);
+ -webkit-backdrop-filter:blur(18px);
+
  will-change:transform,width;
- transition:transform .35s cubic-bezier(.2,.8,.2,1),width .3s ease;
+ transition:
+ transform .32s cubic-bezier(.2,.85,.25,1.25),
+ width .24s cubic-bezier(.2,.8,.2,1),
+ border-radius .25s ease;
+}
+.bottom-nav.dragging .liquid{
+ transition:none;
+ border-radius:20px;
+ box-shadow:
+ 0 5px 18px rgba(120,100,160,.16),
+ inset 0 2px 5px white,
+ inset 0 -3px 6px rgba(160,140,190,.10);
+}
+.bottom-nav.tap-effect .liquid{
+ animation:liquidTap .45s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes liquidTap{
+ 0%{transform:var(--liquid-position) scale(.84,.88)}
+ 40%{transform:var(--liquid-position) scale(1.13,.93)}
+ 70%{transform:var(--liquid-position) scale(.96,1.05)}
+ 100%{transform:var(--liquid-position) scale(1,1)}
 }
 
-.bottom-nav.dragging .liquid-indicator{transition:none}
+/* SMALL AND SPACED ICONS */
 .nav-item{
  position:relative;
  z-index:2;
- width:52px;
- height:49px;
+ width:44px;
+ height:45px;
  flex-shrink:0;
- border-radius:18px;
+ border-radius:17px;
  display:grid;
  place-items:center;
- color:#444;
- transition:transform .2s,color .2s;
- -webkit-tap-highlight-color:transparent;
+ color:#555;
+ background:transparent;
+ transition:color .2s,transform .2s;
  touch-action:none;
+ -webkit-tap-highlight-color:transparent;
 }
-.nav-item.active{color:var(--purple);background:transparent}
-.nav-item.active:after{content:"";position:absolute;bottom:3px;width:5px;height:5px;border-radius:50%;background:var(--purple)}
-.nav-item.create{background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;width:46px;height:43px;border-radius:15px;box-shadow:0 5px 13px #8b5cf64d}
-.nav-item.create svg{width:25px;height:25px;stroke-width:2.3}
-.nav-item.pressing{transform:scale(.87)}
+.nav-item svg{
+ width:22px;
+ height:22px;
+ stroke-width:1.7;
+ transition:transform .2s,color .2s;
+}
+.nav-item.active{color:#292333}
+.nav-item.active svg{transform:scale(1.05)}
+.nav-item.create{
+ width:43px;height:43px;
+ color:#555;
+ background:rgba(255,255,255,.7);
+ border:1px solid rgba(255,255,255,.9);
+ box-shadow:inset 0 1px 3px white,0 2px 7px rgba(0,0,0,.04);
+}
+.nav-item.create svg{width:23px;height:23px}
+.nav-item.pressing svg{transform:scale(.86)}
+.nav-item.pressing{transform:scale(.93)}
 
 /* OTHER PAGES */
 .section-title{font-size:23px;font-weight:800;padding:18px}
-.search-box{margin:5px 16px 15px;background:#f1f1f5;border-radius:13px;padding:12px 15px;display:flex;gap:10px}
+.search-box{
+ margin:5px 16px 15px;
+ background:#f1f1f5;
+ border-radius:13px;
+ padding:12px 15px;
+ display:flex;gap:10px;
+}
 .search-box input{border:0;outline:0;background:transparent;width:100%;font-size:15px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
 .grid img{width:100%;aspect-ratio:1;object-fit:cover}
-.reel-card{height:65vh;min-height:430px;margin:10px 12px;border-radius:20px;overflow:hidden;position:relative;background:#222}
+.reel-card{
+ height:65vh;min-height:430px;
+ margin:10px 12px;
+ border-radius:20px;
+ overflow:hidden;
+ position:relative;background:#222;
+}
 .reel-card img{width:100%;height:100%;object-fit:cover}
 .reel-overlay{position:absolute;bottom:20px;left:15px;color:white;text-shadow:0 1px 4px #333}
 .chat-row{display:flex;align-items:center;gap:12px;padding:13px 17px;border-bottom:1px solid #f4f4f4}
@@ -140,23 +247,26 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 .profile-buttons{display:flex;gap:8px;padding:0 17px 17px}
 .profile-buttons button{flex:1}
 .create-form{padding:15px}
-.create-form input,.create-form textarea{width:100%;border:1px solid #e7e7eb;border-radius:12px;padding:13px;margin-bottom:12px;outline:none}
+.create-form input,.create-form textarea{
+ width:100%;border:1px solid #e7e7eb;
+ border-radius:12px;padding:13px;margin-bottom:12px;outline:none
+}
 .create-form textarea{height:110px;resize:vertical}
 .empty{text-align:center;padding:50px 20px;color:#888}
 </style>
 </head>
 
 <body>
-<div class="app" id="app">
+<div class="app">
 
 <header>
  <div class="logo">insta <span>x</span> you</div>
  <div class="header-actions">
   <button class="icon-btn" onclick="go('search')">
-   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
   </button>
   <button class="icon-btn" onclick="go('messages')">
-   <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"></path></svg>
+   <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"/></svg>
   </button>
  </div>
 </header>
@@ -165,7 +275,7 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 
 <section class="page active" id="home">
  <div class="stories">
-  <div class="story me"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=12"></div>Your story</div>
+  <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=12"></div>Your story</div>
   <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=11"></div>Rahul</div>
   <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=5"></div>Priya</div>
   <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=15"></div>Nature</div>
@@ -231,60 +341,61 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 </main>
 
 <nav class="bottom-nav" id="bottomNav">
- <div class="liquid-indicator" id="liquidIndicator"></div>
+
+ <div class="liquid" id="liquid"></div>
 
  <button class="nav-item active" data-page="home">
-  <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1Z"></path></svg>
+  <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1Z"/></svg>
  </button>
 
  <button class="nav-item" data-page="reels">
-  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="m10 8 6 4-6 4Z"></path></svg>
+  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m10 8 6 4-6 4Z"/></svg>
  </button>
 
  <button class="nav-item create" data-page="create">
-  <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+  <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
  </button>
 
  <button class="nav-item" data-page="messages">
-  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"></path></svg>
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"/></svg>
  </button>
 
  <button class="nav-item" data-page="profile">
-  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
  </button>
-</nav>
 
+</nav>
 </div>
 
 <script>
-const swipePages=["home","reels","create","messages","profile"];
+const pages=["home","reels","create","messages","profile"];
 let currentPage="home";
 
 let posts=[
-{id:1,user:"nature_world",avatar:"https://i.pravatar.cc/100?img=11",image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",caption:"Beautiful nature 🌿✨",likes:245,liked:false,comments:["Amazing view!","Beautiful ❤️"]},
-{id:2,user:"travel_diary",avatar:"https://i.pravatar.cc/100?img=5",image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=900",caption:"Collect moments, not things ✨",likes:182,liked:false,comments:["Wow!"]}
+ {id:1,user:"nature_world",avatar:"https://i.pravatar.cc/100?img=11",image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",caption:"Beautiful nature 🌿✨",likes:245,liked:false,comments:["Amazing view!","Beautiful ❤️"]},
+ {id:2,user:"travel_diary",avatar:"https://i.pravatar.cc/100?img=5",image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=900",caption:"Collect moments, not things ✨",likes:182,liked:false,comments:["Wow!"]}
 ];
 
-function vibrate(){
- if(navigator.vibrate)navigator.vibrate(8);
+function vibrate(n=8){
+ if(navigator.vibrate)navigator.vibrate(n);
 }
 
 function go(id,direction){
  if(!document.getElementById(id)||id===currentPage)return;
 
- const old=swipePages.indexOf(currentPage);
- const next=swipePages.indexOf(id);
+ const old=pages.indexOf(currentPage);
+ const next=pages.indexOf(id);
 
  if(!direction)direction=next>=old?"left":"right";
 
  document.querySelectorAll(".page").forEach(p=>{
-  p.classList.remove("active","slide-left","slide-right");
-  p.style.transform="";
-  p.style.opacity="";
+  p.classList.remove("active");
  });
 
  const page=document.getElementById(id);
- page.classList.add("active",direction==="left"?"slide-left":"slide-right");
+ page.classList.remove("active");
+ void page.offsetWidth;
+ page.classList.add("active");
 
  currentPage=id;
 
@@ -294,10 +405,9 @@ function go(id,direction){
 
  if(id==="profile")renderProfile();
  if(id==="search")searchPosts("");
+
  window.scrollTo({top:0,behavior:"instant"});
 }
-
-/* FEED */
 
 function renderFeed(){
  document.getElementById("feed").innerHTML=posts.map(p=>`
@@ -352,8 +462,7 @@ function createPost(){
  if(!caption&&!image){alert("Please add a caption or image URL.");return}
 
  posts.unshift({
-  id:Date.now(),
-  user,
+  id:Date.now(),user,
   avatar:"https://i.pravatar.cc/100?img=12",
   image:image||"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
   caption,likes:0,liked:false,comments:[]
@@ -363,7 +472,7 @@ function createPost(){
  document.getElementById("postImage").value="";
  renderFeed();
  vibrate();
- go("home","right");
+ go("home");
 }
 
 function renderProfile(){
@@ -386,158 +495,262 @@ function escapeHTML(value){
  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
-/* LIQUID NAVIGATION ENGINE */
+/* ==================================================
+   REAL TOUCH FOLLOW LIQUID NAVIGATION
+   Uses native touch events for Android reliability.
+================================================== */
 
 const nav=document.getElementById("bottomNav");
-const liquid=document.getElementById("liquidIndicator");
+const liquid=document.getElementById("liquid");
+const buttons=[...nav.querySelectorAll(".nav-item")];
 
-let navDragging=false;
-let selectedButton=null;
-let startX=0;
-let lastX=0;
-let moved=false;
-let activePointer=null;
+let touching=false;
+let selected=null;
+let touchStartX=0;
+let touchStartY=0;
+let lastTouchX=0;
+let lastTouchY=0;
+let hasMoved=false;
+let startCenter=0;
 
-function moveLiquid(button,instant=false){
- if(!button)return;
+function getCenter(button){
+ const nr=nav.getBoundingClientRect();
+ const br=button.getBoundingClientRect();
+ return br.left-nr.left+br.width/2;
+}
 
+function nearestButton(x){
+ let best=null;
+ let distance=Infinity;
+
+ buttons.forEach(b=>{
+  const d=Math.abs(getCenter(b)-x);
+  if(d<distance){
+   distance=d;
+   best=b;
+  }
+ });
+ return best;
+}
+
+function placeLiquid(center,width=44,animated=true){
  const navRect=nav.getBoundingClientRect();
- const btnRect=button.getBoundingClientRect();
+ const left=center-width/2;
 
- const x=btnRect.left-navRect.left;
+ liquid.style.transition=animated
+  ?"transform .32s cubic-bezier(.2,.85,.25,1.25),width .24s ease"
+  :"none";
 
- liquid.style.width=btnRect.width+"px";
- liquid.style.transform=`translateX(${x}px) scaleX(1)`;
-
+ liquid.style.width=width+"px";
+ liquid.style.transform=`translate3d(${left}px,0,0) scaleX(1)`;
  liquid.style.opacity="1";
 }
 
-function selectButton(button){
+function setSelected(button,animate=false){
  if(!button)return;
 
- selectedButton=button;
+ selected=button;
 
- document.querySelectorAll(".nav-item").forEach(b=>{
+ buttons.forEach(b=>{
   b.classList.toggle("active",b===button);
  });
 
- moveLiquid(button);
+ placeLiquid(getCenter(button),44,animate);
 }
 
-function findButton(x,y){
- const elements=document.elementsFromPoint(x,y);
-
- for(const element of elements){
-  const button=element.closest(".nav-item");
-  if(button&&nav.contains(button))return button;
- }
-
- return null;
+function tapAnimation(){
+ nav.classList.remove("tap-effect");
+ void nav.offsetWidth;
+ nav.classList.add("tap-effect");
+ setTimeout(()=>nav.classList.remove("tap-effect"),480);
 }
 
-/* PRESS AND HOLD */
+function startTouch(e){
+ if(e.touches.length!==1)return;
 
-nav.addEventListener("pointerdown",e=>{
- const button=e.target.closest(".nav-item");
- if(!button)return;
+ const t=e.touches[0];
+ const target=e.target.closest(".nav-item");
+
+ if(!target)return;
 
  e.preventDefault();
 
- navDragging=true;
- moved=false;
- activePointer=e.pointerId;
- startX=e.clientX;
- lastX=e.clientX;
+ touching=true;
+ hasMoved=false;
+ selected=target;
 
- selectedButton=button;
+ touchStartX=t.clientX;
+ touchStartY=t.clientY;
+ lastTouchX=t.clientX;
+ lastTouchY=t.clientY;
 
- nav.setPointerCapture(e.pointerId);
+ startCenter=getCenter(target);
+
  nav.classList.add("dragging");
+ target.classList.add("pressing");
 
- button.classList.add("pressing");
+ setSelected(target,false);
+ vibrate(8);
+}
 
- selectButton(button);
- vibrate();
-});
+function moveTouch(e){
+ if(!touching||e.touches.length!==1)return;
 
-/* FOLLOW FINGER */
+ const t=e.touches[0];
 
-nav.addEventListener("pointermove",e=>{
- if(!navDragging||e.pointerId!==activePointer)return;
+ const x=t.clientX;
+ const y=t.clientY;
 
- lastX=e.clientX;
+ lastTouchX=x;
+ lastTouchY=y;
 
- if(Math.abs(lastX-startX)>4)moved=true;
+ const dx=x-touchStartX;
+ const dy=y-touchStartY;
 
- const button=findButton(e.clientX,e.clientY);
+ if(Math.abs(dx)>3)hasMoved=true;
 
- if(button&&button!==selectedButton){
-  selectButton(button);
-  vibrate();
+ if(!hasMoved)return;
+
+ e.preventDefault();
+
+ /* Finger controls bubble continuously */
+ const nr=nav.getBoundingClientRect();
+
+ const min=22;
+ const max=nr.width-22;
+
+ const center=Math.max(min,Math.min(max,x-nr.left));
+
+ /* Stretch according to finger speed */
+ const stretch=Math.min(Math.abs(dx)/180,.20);
+ const width=44+(stretch*24);
+
+ const left=center-width/2;
+
+ liquid.style.transition="none";
+ liquid.style.width=width+"px";
+ liquid.style.transform=`translate3d(${left}px,0,0) scaleX(${1+stretch})`;
+
+ /* Select nearest icon */
+ const next=nearestButton(x);
+
+ if(next&&next!==selected){
+  selected=next;
+
+  buttons.forEach(b=>{
+   b.classList.toggle("active",b===next);
+  });
+
+  vibrate(5);
  }
+}
 
- if(moved){
-  const dx=lastX-startX;
-  const stretch=1+Math.min(Math.abs(dx)/400,.16);
-  const rect=liquid.getBoundingClientRect();
-  const navRect=nav.getBoundingClientRect();
-  const currentX=rect.left-navRect.left;
+function endTouch(e){
+ if(!touching)return;
 
-  liquid.style.transform=`translateX(${currentX}px) scaleX(${stretch})`;
- }
-});
+ if(e.cancelable)e.preventDefault();
 
-/* RELEASE */
-
-function releaseNavigation(e){
- if(!navDragging)return;
- if(e&&e.pointerId!==activePointer)return;
-
- navDragging=false;
+ touching=false;
  nav.classList.remove("dragging");
 
- document.querySelectorAll(".nav-item").forEach(b=>{
-  b.classList.remove("pressing");
- });
+ buttons.forEach(b=>b.classList.remove("pressing"));
 
- const button=selectedButton;
+ let finalButton=nearestButton(lastTouchX);
 
- if(button){
-  const page=button.dataset.page;
+ if(!finalButton)finalButton=selected;
 
-  moveLiquid(button);
+ if(finalButton){
+  setSelected(finalButton,true);
 
-  // Tap and drag both open the selected page.
+  const page=finalButton.dataset.page;
+
   if(page!==currentPage){
-   const oldIndex=swipePages.indexOf(currentPage);
-   const newIndex=swipePages.indexOf(page);
-   go(page,newIndex>=oldIndex?"left":"right");
-   moveLiquid(button);
+   go(page);
+   setSelected(finalButton,true);
+  }
+
+  if(!hasMoved){
+   tapAnimation();
   }
  }
 
- activePointer=null;
+ selected=null;
 }
 
-nav.addEventListener("pointerup",releaseNavigation);
-nav.addEventListener("pointercancel",releaseNavigation);
+/* Native touch events */
+nav.addEventListener("touchstart",startTouch,{passive:false});
+nav.addEventListener("touchmove",moveTouch,{passive:false});
+nav.addEventListener("touchend",endTouch,{passive:false});
+nav.addEventListener("touchcancel",endTouch,{passive:false});
+
+/* Mouse and pointer support for desktop */
+let mouseDown=false;
+
+nav.addEventListener("pointerdown",e=>{
+ if(e.pointerType==="touch")return;
+
+ const b=e.target.closest(".nav-item");
+ if(!b)return;
+
+ mouseDown=true;
+ touching=true;
+ hasMoved=false;
+ selected=b;
+ touchStartX=e.clientX;
+ lastTouchX=e.clientX;
+ startCenter=getCenter(b);
+
+ nav.classList.add("dragging");
+ setSelected(b,false);
+});
+
+window.addEventListener("pointermove",e=>{
+ if(!mouseDown||!touching)return;
+
+ lastTouchX=e.clientX;
+
+ const nr=nav.getBoundingClientRect();
+ const center=Math.max(22,Math.min(nr.width-22,e.clientX-nr.left));
+
+ if(Math.abs(e.clientX-touchStartX)>3)hasMoved=true;
+
+ if(hasMoved){
+  const stretch=Math.min(Math.abs(e.clientX-touchStartX)/180,.20);
+  const width=44+stretch*24;
+
+  liquid.style.transition="none";
+  liquid.style.width=width+"px";
+  liquid.style.transform=`translate3d(${center-width/2}px,0,0) scaleX(${1+stretch})`;
+
+  selected=nearestButton(e.clientX);
+  if(selected){
+   buttons.forEach(b=>b.classList.toggle("active",b===selected));
+  }
+ }
+});
+
+window.addEventListener("pointerup",()=>{
+ if(!mouseDown)return;
+ mouseDown=false;
+ endTouch();
+});
 
 /* INITIAL POSITION */
-
-function initializeLiquid(){
+function initialize(){
  const home=nav.querySelector('[data-page="home"]');
- if(home)moveLiquid(home);
+ if(home)setSelected(home,true);
 }
 
-window.addEventListener("load",initializeLiquid);
+window.addEventListener("load",initialize);
 window.addEventListener("resize",()=>{
  const active=nav.querySelector(".nav-item.active");
- if(active)moveLiquid(active);
+ if(active)setSelected(active,true);
 });
 
 renderFeed();
 renderProfile();
-initializeLiquid();
+initialize();
 </script>
+
 </body>
 </html>
