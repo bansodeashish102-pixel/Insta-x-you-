@@ -1,97 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>insta x you</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--purple:#8b5cf6;--text:#171717;--muted:#888;--glass:rgba(255,255,255,.78)}
-body{
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- background:#f7f7fa;color:var(--text);
- overflow-x:hidden;
-}
+:root{--purple:#8b5cf6;--text:#171717}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f7f7fa;color:var(--text);overflow-x:hidden}
 button,input,textarea{font:inherit}
 button{border:0;background:none;color:inherit;cursor:pointer}
-.app{max-width:520px;margin:auto;min-height:100dvh;background:#fff;position:relative;overflow:hidden}
-header{
- height:60px;padding:0 17px;display:flex;align-items:center;
- justify-content:space-between;background:rgba(255,255,255,.9);
- position:sticky;top:0;z-index:10;backdrop-filter:blur(20px);
- border-bottom:1px solid #f1f1f1;
-}
+.app{max-width:520px;margin:auto;min-height:100dvh;background:white;position:relative;overflow:hidden}
+
+header{height:60px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);position:sticky;top:0;z-index:10;backdrop-filter:blur(20px);border-bottom:1px solid #f1f1f1}
 .logo{font-size:24px;font-weight:850;letter-spacing:-1.2px}
 .logo span{color:var(--purple)}
 .header-actions{display:flex;gap:18px;align-items:center}
-.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;transition:.2s}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
 .icon-btn svg,.nav-item svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.icon-btn:active{background:#eee;transform:scale(.88)}
+
 main{min-height:calc(100dvh - 125px);padding-bottom:100px}
-.page{display:none;min-height:70vh;animation-duration:.36s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.page{display:none;min-height:70vh;animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
 .page.active{display:block}
 .slide-left{animation-name:slideLeft}
 .slide-right{animation-name:slideRight}
-@keyframes slideLeft{from{opacity:.4;transform:translateX(45px) scale(.98);filter:blur(3px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
-@keyframes slideRight{from{opacity:.4;transform:translateX(-45px) scale(.98);filter:blur(3px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
+@keyframes slideLeft{from{opacity:.5;transform:translateX(35px) scale(.98);filter:blur(2px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
+@keyframes slideRight{from{opacity:.5;transform:translateX(-35px) scale(.98);filter:blur(2px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
 
-/* Stories */
+/* STORIES */
 .stories{display:flex;gap:14px;overflow-x:auto;padding:15px 13px 17px;scrollbar-width:none}
 .stories::-webkit-scrollbar{display:none}
 .story{flex:0 0 67px;text-align:center;font-size:11px;color:#555}
 .story-ring{width:64px;height:64px;padding:3px;border-radius:50%;background:linear-gradient(45deg,#ffb347,#ff3d77,#9b5cff);margin-bottom:5px}
 .story-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid white}
 .story.me .story-ring{background:#eee}
-.story.me .story-ring img{border-color:white}
 
-/* Feed */
+/* FEED */
 .post{border-top:1px solid #f1f1f1;margin-bottom:16px}
 .post-head{height:55px;display:flex;align-items:center;padding:0 13px;gap:10px}
 .avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;background:#eee}
 .user-info{flex:1;font-size:13px;font-weight:700}
 .user-info small{display:block;font-size:11px;color:#888;font-weight:400;margin-top:2px}
-.more{font-size:22px;padding:5px}
-.post-image{width:100%;aspect-ratio:1/1;object-fit:cover;background:#f0f0f0;display:block}
+.post-image{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f0f0f0}
 .post-actions{display:flex;align-items:center;gap:15px;padding:11px 13px}
 .post-actions button{font-size:23px;line-height:1}
-.post-actions .save{margin-left:auto}
+.save{margin-left:auto}
 .post-info{padding:0 13px 12px;font-size:13px;line-height:1.5}
 .likes{font-weight:750;margin-bottom:4px}
 .caption strong{margin-right:5px}
-.view-comments{color:#888;margin-top:4px;cursor:pointer}
+.view-comments{color:#888;margin-top:4px}
 .time{font-size:10px;color:#aaa;margin-top:5px}
 .liked{color:#ed3971!important}
 
-/* Bottom glass navigation */
+/* LIQUID NAVIGATION */
 .bottom-nav{
- position:fixed;z-index:30;bottom:max(12px,env(safe-area-inset-bottom));
- left:50%;transform:translateX(-50%);
- width:min(94%,490px);height:65px;
- display:flex;align-items:center;justify-content:space-around;
- padding:5px 9px;border:1px solid rgba(255,255,255,.9);
+ position:fixed;
+ z-index:30;
+ bottom:max(12px,env(safe-area-inset-bottom));
+ left:50%;
+ transform:translateX(-50%);
+ width:min(94%,490px);
+ height:65px;
+ display:flex;
+ align-items:center;
+ justify-content:space-around;
+ padding:5px 9px;
+ border:1px solid rgba(255,255,255,.9);
  border-radius:25px;
  background:rgba(255,255,255,.76);
  backdrop-filter:blur(28px) saturate(180%);
  -webkit-backdrop-filter:blur(28px) saturate(180%);
  box-shadow:0 8px 35px rgba(30,20,60,.13),inset 0 1px 1px white;
+ touch-action:pan-y;
+ user-select:none;
+ -webkit-user-select:none;
 }
+
+.liquid-indicator{
+ position:absolute;
+ top:8px;
+ left:0;
+ width:52px;
+ height:49px;
+ border-radius:18px;
+ pointer-events:none;
+ z-index:1;
+ opacity:0;
+ background:rgba(139,92,246,.15);
+ border:1px solid rgba(255,255,255,.9);
+ box-shadow:0 3px 14px rgba(139,92,246,.15),inset 0 1px 4px white;
+ backdrop-filter:blur(15px);
+ -webkit-backdrop-filter:blur(15px);
+ will-change:transform,width;
+ transition:transform .35s cubic-bezier(.2,.8,.2,1),width .3s ease;
+}
+
+.bottom-nav.dragging .liquid-indicator{transition:none}
 .nav-item{
- position:relative;width:52px;height:49px;border-radius:18px;
- display:grid;place-items:center;transition:transform .25s,background .25s,filter .25s;
+ position:relative;
+ z-index:2;
+ width:52px;
+ height:49px;
+ flex-shrink:0;
+ border-radius:18px;
+ display:grid;
+ place-items:center;
+ color:#444;
+ transition:transform .2s,color .2s;
+ -webkit-tap-highlight-color:transparent;
+ touch-action:none;
 }
-.nav-item.active{background:rgba(139,92,246,.12);color:var(--purple)}
-.nav-item.active:after{
- content:"";position:absolute;bottom:3px;width:5px;height:5px;
- border-radius:50%;background:var(--purple)
-}
+.nav-item.active{color:var(--purple);background:transparent}
+.nav-item.active:after{content:"";position:absolute;bottom:3px;width:5px;height:5px;border-radius:50%;background:var(--purple)}
 .nav-item.create{background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;width:46px;height:43px;border-radius:15px;box-shadow:0 5px 13px #8b5cf64d}
 .nav-item.create svg{width:25px;height:25px;stroke-width:2.3}
-.pressing{transform:scale(.82)!important;filter:blur(.5px);background:rgba(139,92,246,.2)!important}
-.nav-item.create.pressing{transform:scale(.86)!important;filter:brightness(1.12) blur(.4px)}
-/* Pages */
+.nav-item.pressing{transform:scale(.87)}
+
+/* OTHER PAGES */
 .section-title{font-size:23px;font-weight:800;padding:18px}
 .search-box{margin:5px 16px 15px;background:#f1f1f5;border-radius:13px;padding:12px 15px;display:flex;gap:10px}
 .search-box input{border:0;outline:0;background:transparent;width:100%;font-size:15px}
@@ -116,8 +143,6 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 .create-form input,.create-form textarea{width:100%;border:1px solid #e7e7eb;border-radius:12px;padding:13px;margin-bottom:12px;outline:none}
 .create-form textarea{height:110px;resize:vertical}
 .empty{text-align:center;padding:50px 20px;color:#888}
-.comment-line{padding:5px 0}
-.dragging{transition:none!important}
 </style>
 </head>
 
@@ -127,20 +152,19 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 <header>
  <div class="logo">insta <span>x</span> you</div>
  <div class="header-actions">
-  <button class="icon-btn" onclick="go('search')" aria-label="Search">
+  <button class="icon-btn" onclick="go('search')">
    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
   </button>
-  <button class="icon-btn" onclick="go('messages')" aria-label="Messages">
+  <button class="icon-btn" onclick="go('messages')">
    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"></path></svg>
   </button>
  </div>
 </header>
 
-<main id="main">
+<main>
 
-<!-- HOME -->
 <section class="page active" id="home">
- <div class="stories" id="stories">
+ <div class="stories">
   <div class="story me"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=12"></div>Your story</div>
   <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=11"></div>Rahul</div>
   <div class="story"><div class="story-ring"><img src="https://i.pravatar.cc/100?img=5"></div>Priya</div>
@@ -151,7 +175,6 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
  <div id="feed"></div>
 </section>
 
-<!-- SEARCH -->
 <section class="page" id="search">
  <h2 class="section-title">Search</h2>
  <div class="search-box">
@@ -161,16 +184,14 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
  <div class="grid" id="searchGrid"></div>
 </section>
 
-<!-- REELS -->
 <section class="page" id="reels">
  <h2 class="section-title">Reels</h2>
  <div class="reel-card">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900" alt="Nature reel">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900">
   <div class="reel-overlay"><b>@nature_world</b><p>Explore the beauty of nature ✨</p></div>
  </div>
 </section>
 
-<!-- CREATE -->
 <section class="page" id="create">
  <h2 class="section-title">Create post</h2>
  <div class="create-form">
@@ -179,9 +200,8 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
   <input id="postImage" placeholder="Image URL (optional)">
   <button class="primary-btn" style="width:100%;padding:14px" onclick="createPost()">Share post</button>
  </div>
- </section>
+</section>
 
-<!-- MESSAGES -->
 <section class="page" id="messages">
  <h2 class="section-title">Messages</h2>
  <div class="chat-row"><img class="avatar" src="https://i.pravatar.cc/100?img=11"><div><b>Rahul</b><small>Hey! What's up?</small></div></div>
@@ -190,7 +210,6 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
  <p class="empty">Your conversations will appear here.</p>
 </section>
 
-<!-- PROFILE -->
 <section class="page" id="profile">
  <h2 class="section-title">Profile</h2>
  <div class="profile-top">
@@ -212,67 +231,83 @@ main{min-height:calc(100dvh - 125px);padding-bottom:100px}
 </main>
 
 <nav class="bottom-nav" id="bottomNav">
- <button class="nav-item active" data-page="home" onclick="go('home')">
+ <div class="liquid-indicator" id="liquidIndicator"></div>
+
+ <button class="nav-item active" data-page="home">
   <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1Z"></path></svg>
  </button>
- <button class="nav-item" data-page="reels" onclick="go('reels')">
+
+ <button class="nav-item" data-page="reels">
   <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="m10 8 6 4-6 4Z"></path></svg>
  </button>
- <button class="nav-item create" data-page="create" onclick="go('create')">
+
+ <button class="nav-item create" data-page="create">
   <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
  </button>
- <button class="nav-item" data-page="messages" onclick="go('messages')">
+
+ <button class="nav-item" data-page="messages">
   <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"></path></svg>
  </button>
- <button class="nav-item" data-page="profile" onclick="go('profile')">
+
+ <button class="nav-item" data-page="profile">
   <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
  </button>
 </nav>
+
 </div>
 
 <script>
 const swipePages=["home","reels","create","messages","profile"];
 let currentPage="home";
+
 let posts=[
- {id:1,user:"nature_world",avatar:"https://i.pravatar.cc/100?img=11",image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",caption:"Beautiful nature 🌿✨",likes:245,liked:false,comments:["Amazing view!","Beautiful ❤️"]},
- {id:2,user:"travel_diary",avatar:"https://i.pravatar.cc/100?img=5",image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=900",caption:"Collect moments, not things ✨",likes:182,liked:false,comments:["Wow!"]}
+{id:1,user:"nature_world",avatar:"https://i.pravatar.cc/100?img=11",image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900",caption:"Beautiful nature 🌿✨",likes:245,liked:false,comments:["Amazing view!","Beautiful ❤️"]},
+{id:2,user:"travel_diary",avatar:"https://i.pravatar.cc/100?img=5",image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=900",caption:"Collect moments, not things ✨",likes:182,liked:false,comments:["Wow!"]}
 ];
 
 function vibrate(){
- if(navigator.vibrate) navigator.vibrate(10);
+ if(navigator.vibrate)navigator.vibrate(8);
 }
+
 function go(id,direction){
  if(!document.getElementById(id)||id===currentPage)return;
- const oldIndex=swipePages.indexOf(currentPage);
- const newIndex=swipePages.indexOf(id);
- if(!direction){
-  direction=(oldIndex<0||newIndex<0||newIndex>oldIndex)?"left":"right";
- }
- vibrate();
+
+ const old=swipePages.indexOf(currentPage);
+ const next=swipePages.indexOf(id);
+
+ if(!direction)direction=next>=old?"left":"right";
+
  document.querySelectorAll(".page").forEach(p=>{
   p.classList.remove("active","slide-left","slide-right");
+  p.style.transform="";
+  p.style.opacity="";
  });
+
  const page=document.getElementById(id);
  page.classList.add("active",direction==="left"?"slide-left":"slide-right");
+
  currentPage=id;
+
  document.querySelectorAll(".nav-item").forEach(b=>{
   b.classList.toggle("active",b.dataset.page===id);
  });
- window.scrollTo({top:0,behavior:"instant"});
+
  if(id==="profile")renderProfile();
  if(id==="search")searchPosts("");
+ window.scrollTo({top:0,behavior:"instant"});
 }
 
+/* FEED */
+
 function renderFeed(){
- const feed=document.getElementById("feed");
- feed.innerHTML=posts.map(p=>`
+ document.getElementById("feed").innerHTML=posts.map(p=>`
  <article class="post">
   <div class="post-head">
    <img class="avatar" src="${p.avatar}">
    <div class="user-info">${escapeHTML(p.user)}<small>Suggested for you</small></div>
    <button class="more">•••</button>
   </div>
-  <img class="post-image" src="${p.image}" alt="Post image">
+  <img class="post-image" src="${p.image}">
   <div class="post-actions">
    <button class="${p.liked?"liked":""}" onclick="toggleLike(${p.id})">${p.liked?"♥":"♡"}</button>
    <button onclick="commentPost(${p.id})">♧</button>
@@ -286,6 +321,7 @@ function renderFeed(){
    <div class="time">A FEW MOMENTS AGO</div>
   </div>
  </article>`).join("");
+
  document.getElementById("postCount").textContent=posts.length;
 }
 
@@ -294,100 +330,214 @@ function toggleLike(id){
  if(!p)return;
  p.liked=!p.liked;
  p.likes+=p.liked?1:-1;
- vibrate();renderFeed();
+ vibrate();
+ renderFeed();
 }
+
 function commentPost(id){
  const p=posts.find(x=>x.id===id);
  if(!p)return;
- const comment=prompt("Write a comment:");
- if(comment&&comment.trim()){
-  p.comments.push(comment.trim());
+ const c=prompt("Write a comment:");
+ if(c&&c.trim()){
+  p.comments.push(c.trim());
   renderFeed();
  }
 }
+
 function createPost(){
  const user=document.getElementById("postName").value.trim()||"you";
  const caption=document.getElementById("postCaption").value.trim();
- const imageUrl=document.getElementById("postImage").value.trim();
- if(!caption&&!imageUrl){alert("Please add a caption or image URL.");return}
+ const image=document.getElementById("postImage").value.trim();
+
+ if(!caption&&!image){alert("Please add a caption or image URL.");return}
+
  posts.unshift({
-  id:Date.now(),user,avatar:"https://i.pravatar.cc/100?img=12",
-  image:imageUrl||"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
+  id:Date.now(),
+  user,
+  avatar:"https://i.pravatar.cc/100?img=12",
+  image:image||"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
   caption,likes:0,liked:false,comments:[]
  });
+
  document.getElementById("postCaption").value="";
  document.getElementById("postImage").value="";
- renderFeed();vibrate();go("home","right");
+ renderFeed();
+ vibrate();
+ go("home","right");
 }
+
 function renderProfile(){
  document.getElementById("profileGrid").innerHTML=posts.map(p=>`<img src="${p.image}">`).join("");
  document.getElementById("postCount").textContent=posts.length;
 }
+
 function searchPosts(query){
  const q=query.toLowerCase();
  const found=posts.filter(p=>p.user.toLowerCase().includes(q)||p.caption.toLowerCase().includes(q));
- document.getElementById("searchGrid").innerHTML=found.map(p=>`<img src="${p.image}" alt="Post">`).join("");
+ document.getElementById("searchGrid").innerHTML=found.map(p=>`<img src="${p.image}">`).join("");
 }
+
 function editProfile(){
  const name=prompt("Enter your profile name:",document.getElementById("profileName").textContent);
  if(name&&name.trim())document.getElementById("profileName").textContent=name.trim();
 }
+
 function escapeHTML(value){
  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
-/* Liquid press effect */
-document.querySelectorAll("button").forEach(btn=>{
- btn.addEventListener("pointerdown",()=>btn.classList.add("pressing"));
- ["pointerup","pointercancel","pointerleave"].forEach(event=>{
-  btn.addEventListener(event,()=>btn.classList.remove("pressing"));
+/* LIQUID NAVIGATION ENGINE */
+
+const nav=document.getElementById("bottomNav");
+const liquid=document.getElementById("liquidIndicator");
+
+let navDragging=false;
+let selectedButton=null;
+let startX=0;
+let lastX=0;
+let moved=false;
+let activePointer=null;
+
+function moveLiquid(button,instant=false){
+ if(!button)return;
+
+ const navRect=nav.getBoundingClientRect();
+ const btnRect=button.getBoundingClientRect();
+
+ const x=btnRect.left-navRect.left;
+
+ liquid.style.width=btnRect.width+"px";
+ liquid.style.transform=`translateX(${x}px) scaleX(1)`;
+
+ liquid.style.opacity="1";
+}
+
+function selectButton(button){
+ if(!button)return;
+
+ selectedButton=button;
+
+ document.querySelectorAll(".nav-item").forEach(b=>{
+  b.classList.toggle("active",b===button);
  });
+
+ moveLiquid(button);
+}
+
+function findButton(x,y){
+ const elements=document.elementsFromPoint(x,y);
+
+ for(const element of elements){
+  const button=element.closest(".nav-item");
+  if(button&&nav.contains(button))return button;
+ }
+
+ return null;
+}
+
+/* PRESS AND HOLD */
+
+nav.addEventListener("pointerdown",e=>{
+ const button=e.target.closest(".nav-item");
+ if(!button)return;
+
+ e.preventDefault();
+
+ navDragging=true;
+ moved=false;
+ activePointer=e.pointerId;
+ startX=e.clientX;
+ lastX=e.clientX;
+
+ selectedButton=button;
+
+ nav.setPointerCapture(e.pointerId);
+ nav.classList.add("dragging");
+
+ button.classList.add("pressing");
+
+ selectButton(button);
+ vibrate();
 });
 
-/* Finger-follow liquid swipe */
-const app=document.getElementById("app");
-let startX=0,startY=0,lastX=0,tracking=false,swiping=false;
-app.addEventListener("touchstart",e=>{
- if(e.touches.length!==1)return;
- const target=e.target;
- if(target.closest("input,textarea,button,.stories"))return;
- startX=e.touches[0].clientX;
- startY=e.touches[0].clientY;
- lastX=startX;tracking=true;swiping=false;
-},{passive:true});
+/* FOLLOW FINGER */
 
-app.addEventListener("touchmove",e=>{
- if(!tracking||e.touches.length!==1)return;
- lastX=e.touches[0].clientX;
- const dx=lastX-startX;
- const dy=e.touches[0].clientY-startY;
- if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.2){
-  swiping=true;
-  const page=document.getElementById(currentPage);
-  const stretch=1+Math.min(Math.abs(dx)/2500,.035);
-  page.style.transform=`translateX(${dx*.18}px) scaleX(${stretch})`;
-  page.style.opacity=String(1-Math.min(Math.abs(dx)/900,.15));
- }
-},{passive:true});
+nav.addEventListener("pointermove",e=>{
+ if(!navDragging||e.pointerId!==activePointer)return;
 
-app.addEventListener("touchend",()=>{
- if(!tracking)return;
- const dx=lastX-startX;
- const page=document.getElementById(currentPage);
- page.style.transform="";
- page.style.opacity="";
- if(swiping&&Math.abs(dx)>65){
-  const index=swipePages.indexOf(currentPage);
-  if(index>=0){
-   const next=dx<0?index+1:index-1;
-   if(swipePages[next])go(swipePages[next],dx<0?"left":"right");
-  }else if(dx>0){go("home","right")}
+ lastX=e.clientX;
+
+ if(Math.abs(lastX-startX)>4)moved=true;
+
+ const button=findButton(e.clientX,e.clientY);
+
+ if(button&&button!==selectedButton){
+  selectButton(button);
+  vibrate();
  }
- tracking=false;swiping=false;
-},{passive:true});
+
+ if(moved){
+  const dx=lastX-startX;
+  const stretch=1+Math.min(Math.abs(dx)/400,.16);
+  const rect=liquid.getBoundingClientRect();
+  const navRect=nav.getBoundingClientRect();
+  const currentX=rect.left-navRect.left;
+
+  liquid.style.transform=`translateX(${currentX}px) scaleX(${stretch})`;
+ }
+});
+
+/* RELEASE */
+
+function releaseNavigation(e){
+ if(!navDragging)return;
+ if(e&&e.pointerId!==activePointer)return;
+
+ navDragging=false;
+ nav.classList.remove("dragging");
+
+ document.querySelectorAll(".nav-item").forEach(b=>{
+  b.classList.remove("pressing");
+ });
+
+ const button=selectedButton;
+
+ if(button){
+  const page=button.dataset.page;
+
+  moveLiquid(button);
+
+  // Tap and drag both open the selected page.
+  if(page!==currentPage){
+   const oldIndex=swipePages.indexOf(currentPage);
+   const newIndex=swipePages.indexOf(page);
+   go(page,newIndex>=oldIndex?"left":"right");
+   moveLiquid(button);
+  }
+ }
+
+ activePointer=null;
+}
+
+nav.addEventListener("pointerup",releaseNavigation);
+nav.addEventListener("pointercancel",releaseNavigation);
+
+/* INITIAL POSITION */
+
+function initializeLiquid(){
+ const home=nav.querySelector('[data-page="home"]');
+ if(home)moveLiquid(home);
+}
+
+window.addEventListener("load",initializeLiquid);
+window.addEventListener("resize",()=>{
+ const active=nav.querySelector(".nav-item.active");
+ if(active)moveLiquid(active);
+});
 
 renderFeed();
 renderProfile();
+initializeLiquid();
 </script>
 </body>
 </html>
